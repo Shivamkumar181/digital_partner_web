@@ -1,14 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { API_URL } from "../../config";
 
-const API_URL = "/api";
+
+const API_BASE_URL = API_URL;
 
 export const fetchProjects = createAsyncThunk(
   "projects/fetchProjects",
   async (params, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.get(`${API_URL}/projects`, {
+      const response = await axios.get(`${API_BASE_URL}/projects`, {
         params,
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
@@ -24,7 +25,7 @@ export const fetchProjectById = createAsyncThunk(
   async (id, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.get(`${API_URL}/projects/${id}`, {
+      const response = await axios.get(`${API_BASE_URL}/projects/${id}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
       return response.data;
@@ -39,7 +40,7 @@ export const createProject = createAsyncThunk(
   async (projectData, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.post(`${API_URL}/projects`, projectData, {
+      const response = await axios.post(`${API_BASE_URL}/projects`, projectData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;
@@ -73,7 +74,7 @@ export const deleteProject = createAsyncThunk(
   async (id, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      await axios.delete(`${API_URL}/projects/${id}`, {
+      await axios.delete(`${API_BASE_URL}/projects/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return id;

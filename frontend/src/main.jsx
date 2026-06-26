@@ -9,7 +9,7 @@ import "./index.css";
 
 axios.defaults.baseURL =
   import.meta.env.VITE_API_URL?.replace(/\/api$/, "") ||
-  "http://localhost:5000";
+  "https://digital-partner-backend.onrender.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

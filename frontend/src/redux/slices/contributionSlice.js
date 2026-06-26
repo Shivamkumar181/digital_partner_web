@@ -1,14 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../config";
 
-const API_URL = "/api";
+
+const API_BASE_URL = API_URL;
+
 
 export const submitContribution = createAsyncThunk(
   "contributions/submit",
   async (formData, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.post(`${API_URL}/contributions`, formData, {
+      const response = await axios.post(`${API_BASE_URL}/contributions`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -27,7 +30,7 @@ export const fetchProjectContributions = createAsyncThunk(
     try {
       const { token } = getState().auth;
       const response = await axios.get(
-        `${API_URL}/contributions/project/${projectId}`,
+        `${API_BASE_URL}/contributions/project/${projectId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -45,7 +48,7 @@ export const fetchMyContributions = createAsyncThunk(
     try {
       const { token } = getState().auth;
       const response = await axios.get(
-        `${API_URL}/contributions/my-contributions`,
+        `${API_BASE_URL}/contributions/my-contributions`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -63,7 +66,7 @@ export const reviewContribution = createAsyncThunk(
     try {
       const { token } = getState().auth;
       const response = await axios.put(
-        `${API_URL}/contributions/${id}/review`,
+        `${API_BASE_URL}/contributions/${id}/review`,
         { status, feedback, rating },
         { headers: { Authorization: `Bearer ${token}` } },
       );
