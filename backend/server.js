@@ -108,7 +108,6 @@ const path = require("path");
 const app = express();
 const server = http.createServer(app);
 
-// ✅ FIX 1: Socket.io CORS - Multiple Origins Allow
 const io = socketIo(server, {
   cors: {
     origin: function (origin, callback) {
@@ -201,5 +200,5 @@ mongoose
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
-  console.log(`✅ Health check: https://digital-partner-backend.onrender.com/api/health`);
+  console.log(`✅ Health check: https://digital-partner.onrender.com/api/health`);
 });

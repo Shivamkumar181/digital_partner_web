@@ -11,7 +11,7 @@ export const fetchMessages = createAsyncThunk(
   async (projectId, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.get(`${API_BASE_URL}/chat/${projectId}`, {
+      const response = await axios.get(`${API_BASE_URL}/api/chat/${projectId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return { projectId, messages: response.data };
@@ -26,7 +26,7 @@ export const fetchUserChats = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.get(`${API_BASE_URL}/chat/chats`, {
+      const response = await axios.get(`${API_BASE_URL}/api/chat/chats`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;

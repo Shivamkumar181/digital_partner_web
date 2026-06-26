@@ -11,7 +11,7 @@ export const submitContribution = createAsyncThunk(
   async (formData, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.post(`${API_BASE_URL}/contributions`, formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/contributions`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -30,7 +30,7 @@ export const fetchProjectContributions = createAsyncThunk(
     try {
       const { token } = getState().auth;
       const response = await axios.get(
-        `${API_BASE_URL}/contributions/project/${projectId}`,
+        `${API_BASE_URL}/api/contributions/project/${projectId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -48,7 +48,7 @@ export const fetchMyContributions = createAsyncThunk(
     try {
       const { token } = getState().auth;
       const response = await axios.get(
-        `${API_BASE_URL}/contributions/my-contributions`,
+        `${API_BASE_URL}/api/contributions/my-contributions`,
         {
           headers: { Authorization: `Bearer ${token}` },
         },
@@ -66,7 +66,7 @@ export const reviewContribution = createAsyncThunk(
     try {
       const { token } = getState().auth;
       const response = await axios.put(
-        `${API_BASE_URL}/contributions/${id}/review`,
+        `${API_BASE_URL}/api/contributions/${id}/review`,
         { status, feedback, rating },
         { headers: { Authorization: `Bearer ${token}` } },
       );

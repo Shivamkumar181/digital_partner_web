@@ -64,7 +64,7 @@ const statusConfig = {
 // components/chat/ChatRoom.jsx - Make sure socket URL is correct
 const getSocket = () => {
   if (!socketInstance || socketInstance.disconnected) {
-    socketInstance = io("https://digital-partner-backend.onrender.com", {
+    socketInstance = io("https://digital-partner.onrender.com", {
       transports: ["websocket", "polling"],
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
