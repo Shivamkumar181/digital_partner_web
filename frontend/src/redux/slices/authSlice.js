@@ -8,7 +8,7 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/login`, {
+      const response = await axios.post(`${API_BASE_URL}/api//auth/login`, {
         email,
         password,
       });
@@ -25,7 +25,7 @@ export const register = createAsyncThunk(
   "auth/register",
   async ({ name, email, password, role }, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/register`, {
+      const response = await axios.post(`${API_BASE_URL}/api/auth/register`, {
         name,
         email,
         password,
@@ -45,7 +45,7 @@ export const getMe = createAsyncThunk(
   async (_, { getState, rejectWithValue }) => {
     try {
       const { token } = getState().auth;
-      const response = await axios.get(`${API_BASE_URL}/auth/me`, {
+      const response = await axios.get(`${API_BASE_URL}/api/auth/me`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return response.data;
