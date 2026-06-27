@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 const io = socketIo(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "https://digital-partner.onrender.com",
+    origin: "https://digital-partner.onrender.com",
     credentials: true,
   },
 });
@@ -26,7 +26,7 @@ global.io = io;
 // Middleware
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "https://digital-partner.onrender.com",
+    origin: "https://digital-partner.onrender.com",
     credentials: true,
   }),
 );
@@ -36,6 +36,16 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from public folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+// Debug middleware to check CORS headers
+app.use((req, res, next) => {
+  console.log('Request Origin:', req.headers.origin);
+  console.log('Request Method:', req.method);
+  console.log('Request URL:', req.url);
+  next();
+});
 
 
 // Health check endpoint
