@@ -64,7 +64,7 @@ const statusConfig = {
 // components/chat/ChatRoom.jsx - Make sure socket URL is correct
 const getSocket = () => {
   if (!socketInstance || socketInstance.disconnected) {
-    socketInstance = io("https://digital-partner.onrender.com", {
+    socketInstance = io("https://digital-partner-web.onrender.com", {
       transports: ["websocket", "polling"],
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
@@ -167,10 +167,9 @@ const ProjectCard = ({ project, index }) => {
 
             {/* Budget */}
             <div className="flex items-baseline gap-1 mb-3">
-              <DollarSign size={14} className="text-purple-400" />
               <IndianRupee size={14} className="text-purple-400"/>
               <span className="text-lg font-bold text-purple-400">
-                ${Number(project.budget).toLocaleString()}
+                {Number(project.budget).toLocaleString()}
               </span>
             </div>
 
