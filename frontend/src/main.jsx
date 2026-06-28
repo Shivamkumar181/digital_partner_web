@@ -7,9 +7,7 @@ import { store } from "./redux/store";
 import App from "./App";
 import "./index.css";
 
-axios.defaults.baseURL =
-  import.meta.env.VITE_API_URL?.replace(/\/api$/, "") ||
-  "https://digital-partner-backend.onrender.com";
+axios.defaults.baseURL = "https://digital-partner-web.onrender.com";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

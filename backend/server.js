@@ -15,7 +15,7 @@ const server = http.createServer(app);
 
 const io = socketIo(server, {
   cors: {
-    origin: "https://digital-partner.onrender.com",
+    origin: "https://digital-partner-web.onrender.com",
     credentials: true,
   },
 });
@@ -26,7 +26,7 @@ global.io = io;
 // Middleware
 app.use(
   cors({
-    origin: "https://digital-partner.onrender.com",
+    origin: "https://digital-partner-web.onrender.com",
     credentials: true,
   }),
 );

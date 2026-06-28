@@ -1,5 +1,4 @@
-export const API_URL =
-  import.meta.env.VITE_API_URL || "https://digital-partner.onrender.com/api";
+export const API_URL = "https://digital-partner-web.onrender.com";
 
 export const PROJECT_CATEGORIES = [
   "web development",

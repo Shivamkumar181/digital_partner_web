@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://digital-partner.onrender.com',
+        target: 'https://digital-partner-web.onrender.com',
         changeOrigin: true
       }
     }

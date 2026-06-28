@@ -1,5 +1,7 @@
 export const getAvatarUrl = (name, avatar) => {
-  if (avatar && avatar !== "" && !avatar.includes("placeholder")) return avatar;
+  if (avatar && typeof avatar === 'string' && avatar.trim() !== '' && !avatar.includes('placeholder')) {
+    return avatar;
+  }
   const initials = name
     ? name
         .split(" ")
@@ -15,14 +17,16 @@ export const getAvatarUrl = (name, avatar) => {
 export const formatCurrency = (amount) => {
   return new Intl.NumberFormat("en-IN", {
     style: "currency",
-    currency: "USD",
+    currency: "INR",
     maximumFractionDigits: 0,
   }).format(amount || 0);
 };
 
 export const formatDate = (date) => {
   if (!date) return "-";
-  return new Date(date).toLocaleDateString("en-US", {
+  const parsedDate = new Date(date);
+  if (isNaN(parsedDate.getTime())) return "-";
+  return parsedDate.toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",

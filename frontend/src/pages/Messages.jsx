@@ -9,7 +9,7 @@ import { getAvatarUrl } from "../utils/helpers";
 let socketInstance = null;
 const getSocket = () => {
   if (!socketInstance || socketInstance.disconnected) {
-    socketInstance = io("https://digital-partner.onrender.com", {
+    socketInstance = io("https://digital-partner-web.onrender.com", {
       transports: ["websocket", "polling"],
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
