@@ -14,7 +14,6 @@ Admin Panel - Full administrative control
 Payment Tracking - Monitor pending and completed payments
 
 # Tech Stack
-
 # Frontend
 React 18	UI library for building user interfaces
 Vite	Build tool and development server
