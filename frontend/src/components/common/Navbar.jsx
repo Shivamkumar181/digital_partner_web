@@ -78,11 +78,11 @@
 //   const typeIcon = {
 //     contribution_submitted: "📝",
 //     contribution_approved: "✅",
-//     contribution_rejected: "❌",
-//     payment_received: "💰",
+//     contribution_rejected: "⚠️",
+//     payment_received: "💳",
 //     message: "💬",
-//     certificate_generated: "🎓",
-//     project_updated: "📢",
+//     certificate_generated: "🎖️",
+//     project_updated: "🔔",
 //   };
 
 //   return (
@@ -366,7 +366,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getAvatarUrl } from "../../utils/helpers";
 import axios from "axios";
 
-// ─── Notification Bell Component ──────────────────────────────────────────────
+// ─── Notification Bell
 const NotificationBell = ({ token }) => {
   const [notifications, setNotifications] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -449,10 +449,10 @@ const NotificationBell = ({ token }) => {
     const icons = {
       contribution_submitted: "📝",
       contribution_approved: "✅",
-      contribution_rejected: "❌",
-      payment_received: "💰",
+      contribution_rejected: "⚠️",
+      payment_received: "💸",
       message: "💬",
-      certificate_generated: "🎓",
+      certificate_generated: "🎖️",
       project_updated: "📢",
     };
     return icons[type] || "🔔";
@@ -567,7 +567,7 @@ const NotificationBell = ({ token }) => {
   );
 };
 
-// ─── Main Navbar Component ────────────────────────────────────────────────────
+// ─── Main Navbar Component
 const Navbar = () => {
   const { user, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -616,15 +616,13 @@ const Navbar = () => {
     <nav className="bg-black border-b border-gray-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
+          
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0 group">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
-              <span className="text-white font-bold text-sm">D</span>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent hidden sm:block">
-              DigitalPartner
-            </span>
-          </Link>
+            <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+             DigitalPartner
+           </span>
+         </Link>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center space-x-1">
@@ -878,7 +876,7 @@ const Navbar = () => {
                     onClick={handleLogout}
                     className="block w-full text-left px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-900/20 transition-colors"
                   >
-                    🚪 Logout
+                    [➔ Logout
                   </button>
                 </>
               ) : (
