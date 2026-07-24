@@ -1,3 +1,147 @@
+// import React from "react";
+// import { motion } from "framer-motion";
+// import { Link } from "react-router-dom";
+
+// const FreelancerDashboard = ({ stats }) => {
+//   const statsCards = [
+//     {
+//       title: "Total Earnings",
+//       value: `$${stats?.totalEarnings || 0}`,
+//       color: "bg-green-500",
+//       icon: "💰",
+//     },
+//     {
+//       title: "Approved Contributions",
+//       value: stats?.approvedContributions || 0,
+//       color: "bg-blue-500",
+//       icon: "✓",
+//     },
+//     {
+//       title: "Pending Reviews",
+//       value: stats?.pendingContributions || 0,
+//       color: "bg-yellow-500",
+//       icon: "⏳",
+//     },
+//     {
+//       title: "Certificates Earned",
+//       value: stats?.certificatesCount || 0,
+//       color: "bg-purple-500",
+//       icon: "📜",
+//     },
+//   ];
+
+//   return (
+//     <>
+//       {/* Stats Grid */}
+//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+//         {statsCards.map((stat, index) => (
+//           <motion.div
+//             key={index}
+//             initial={{ opacity: 0, y: 20 }}
+//             animate={{ opacity: 1, y: 0 }}
+//             transition={{ delay: index * 0.1 }}
+//             className="bg-gray-900 rounded-xl border border-gray-800 p-6"
+//           >
+//             <div
+//               className={`${stat.color} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
+//             >
+//               <span className="text-white text-xl">{stat.icon}</span>
+//             </div>
+//             <p className="text-gray-400 text-sm">{stat.title}</p>
+//             <p className="text-2xl font-bold mt-1">{stat.value}</p>
+//           </motion.div>
+//         ))}
+//       </div>
+
+//       {/* Recent Contributions */}
+//       <motion.div
+//         initial={{ opacity: 0, y: 20 }}
+//         animate={{ opacity: 1, y: 0 }}
+//         transition={{ delay: 0.4 }}
+//         className="bg-gray-900 rounded-xl border border-gray-800 p-6"
+//       >
+//         <h2 className="text-2xl font-bold mb-4">Recent Contributions</h2>
+//         {stats?.recentContributions && stats.recentContributions.length > 0 ? (
+//           <div className="space-y-4">
+//             {stats.recentContributions.map((contribution) => (
+//               <div
+//                 key={contribution._id}
+//                 className="border border-gray-800 rounded-lg p-4 hover:border-indigo-500/40 transition"
+//               >
+//                 <div className="flex justify-between items-start">
+//                   <div>
+//                     <h3 className="font-semibold text-lg">
+//                       {contribution.projectId?.title}
+//                     </h3>
+//                     <p className="text-gray-400 text-sm mt-1">
+//                       {contribution.description?.substring(0, 100)}...
+//                     </p>
+//                   </div>
+//                   <span
+//                     className={`px-3 py-1 rounded-full text-sm ${
+//                       contribution.status === "approved"
+//                         ? "bg-green-500/20 text-green-300"
+//                         : contribution.status === "paid"
+//                           ? "bg-blue-500/20 text-blue-300"
+//                           : contribution.status === "rejected"
+//                             ? "bg-red-500/20 text-red-300"
+//                             : "bg-yellow-500/20 text-yellow-300"
+//                     }`}
+//                   >
+//                     {contribution.status}
+//                   </span>
+//                 </div>
+//                 <div className="mt-3 flex justify-between items-center">
+//                   <p className="text-indigo-600 font-semibold">
+//                     ${contribution.amount}
+//                   </p>
+//                   <Link
+//                     to={`/projects/${contribution.projectId?._id}`}
+//                     className="text-indigo-600 hover:underline text-sm"
+//                   >
+//                     View Project →
+//                   </Link>
+//                 </div>
+//               </div>
+//             ))}
+//           </div>
+//         ) : (
+//           <p className="text-center text-gray-400 py-8">
+//             No contributions yet. Start contributing to projects!
+//           </p>
+//         )}
+//       </motion.div>
+
+//       {/* Skills Section */}
+//       {stats?.skills && stats.skills.length > 0 && (
+//         <motion.div
+//           initial={{ opacity: 0, y: 20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ delay: 0.5 }}
+//           className="bg-gray-900 rounded-xl border border-gray-800 p-6"
+//         >
+//           <h2 className="text-2xl font-bold mb-4">Your Skills</h2>
+//           <div className="flex flex-wrap gap-2">
+//             {stats.skills.map((skill, index) => (
+//               <span
+//                 key={index}
+//                 className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full"
+//               >
+//                 {skill}
+//               </span>
+//             ))}
+//           </div>
+//         </motion.div>
+//       )}
+//     </>
+//   );
+// };
+
+// export default FreelancerDashboard;
+
+
+
+
 import React from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -8,13 +152,13 @@ const FreelancerDashboard = ({ stats }) => {
       title: "Total Earnings",
       value: `$${stats?.totalEarnings || 0}`,
       color: "bg-green-500",
-      icon: "💰",
+      icon: "💵",
     },
     {
       title: "Approved Contributions",
       value: stats?.approvedContributions || 0,
       color: "bg-blue-500",
-      icon: "✓",
+      icon: "☑️",
     },
     {
       title: "Pending Reviews",
@@ -26,29 +170,29 @@ const FreelancerDashboard = ({ stats }) => {
       title: "Certificates Earned",
       value: stats?.certificatesCount || 0,
       color: "bg-purple-500",
-      icon: "📜",
+      icon: "🎖️",
     },
   ];
 
   return (
-    <>
+    <div className="space-y-4 sm:space-y-6">
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         {statsCards.map((stat, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.1 }}
-            className="bg-gray-900 rounded-xl border border-gray-800 p-6"
+            className="bg-gray-900 rounded-xl border border-gray-800 p-4 sm:p-5 lg:p-6"
           >
             <div
-              className={`${stat.color} w-12 h-12 rounded-lg flex items-center justify-center mb-4`}
+              className={`${stat.color} w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center mb-3 sm:mb-4`}
             >
-              <span className="text-white text-xl">{stat.icon}</span>
+              <span className="text-white text-lg sm:text-xl">{stat.icon}</span>
             </div>
-            <p className="text-gray-400 text-sm">{stat.title}</p>
-            <p className="text-2xl font-bold mt-1">{stat.value}</p>
+            <p className="text-gray-400 text-xs sm:text-sm">{stat.title}</p>
+            <p className="text-xl sm:text-2xl font-bold mt-1">{stat.value}</p>
           </motion.div>
         ))}
       </div>
@@ -58,27 +202,27 @@ const FreelancerDashboard = ({ stats }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="bg-gray-900 rounded-xl border border-gray-800 p-6"
+        className="bg-gray-900 rounded-xl border border-gray-800 p-4 sm:p-5 lg:p-6"
       >
-        <h2 className="text-2xl font-bold mb-4">Recent Contributions</h2>
+        <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Recent Contributions</h2>
         {stats?.recentContributions && stats.recentContributions.length > 0 ? (
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {stats.recentContributions.map((contribution) => (
               <div
                 key={contribution._id}
-                className="border border-gray-800 rounded-lg p-4 hover:border-indigo-500/40 transition"
+                className="border border-gray-800 rounded-lg p-3 sm:p-4 hover:border-indigo-500/40 transition"
               >
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="font-semibold text-lg">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 sm:gap-4">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-base sm:text-lg truncate">
                       {contribution.projectId?.title}
                     </h3>
-                    <p className="text-gray-400 text-sm mt-1">
+                    <p className="text-gray-400 text-xs sm:text-sm mt-1 line-clamp-2">
                       {contribution.description?.substring(0, 100)}...
                     </p>
                   </div>
                   <span
-                    className={`px-3 py-1 rounded-full text-sm ${
+                    className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm whitespace-nowrap self-start ${
                       contribution.status === "approved"
                         ? "bg-green-500/20 text-green-300"
                         : contribution.status === "paid"
@@ -91,13 +235,13 @@ const FreelancerDashboard = ({ stats }) => {
                     {contribution.status}
                   </span>
                 </div>
-                <div className="mt-3 flex justify-between items-center">
-                  <p className="text-indigo-600 font-semibold">
+                <div className="mt-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                  <p className="text-indigo-600 font-semibold text-sm sm:text-base">
                     ${contribution.amount}
                   </p>
                   <Link
                     to={`/projects/${contribution.projectId?._id}`}
-                    className="text-indigo-600 hover:underline text-sm"
+                    className="text-indigo-600 hover:underline text-sm sm:text-base"
                   >
                     View Project →
                   </Link>
@@ -106,7 +250,7 @@ const FreelancerDashboard = ({ stats }) => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-400 py-8">
+          <p className="text-center text-gray-400 py-6 sm:py-8 text-sm sm:text-base">
             No contributions yet. Start contributing to projects!
           </p>
         )}
@@ -118,14 +262,14 @@ const FreelancerDashboard = ({ stats }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="bg-gray-900 rounded-xl border border-gray-800 p-6"
+          className="bg-gray-900 rounded-xl border border-gray-800 p-4 sm:p-5 lg:p-6"
         >
-          <h2 className="text-2xl font-bold mb-4">Your Skills</h2>
-          <div className="flex flex-wrap gap-2">
+          <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4">Your Skills</h2>
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {stats.skills.map((skill, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full"
+                className="px-2 sm:px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-xs sm:text-sm"
               >
                 {skill}
               </span>
@@ -133,7 +277,7 @@ const FreelancerDashboard = ({ stats }) => {
           </div>
         </motion.div>
       )}
-    </>
+    </div>
   );
 };
 
