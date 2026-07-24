@@ -382,7 +382,7 @@ const ProjectCard = ({ project, index }) => {
 
             {/* Budget */}
             <div className="flex items-baseline gap-1 mb-2 sm:mb-3">
-              <IndianRupee size={12} className="sm:w-3.5 sm:h-3.5 text-purple-400" />
+              <DollarSign size={12} className="sm:w-3.5 sm:h-3.5 text-purple-400" />
               <span className="text-base sm:text-lg font-bold text-purple-400">
                 {Number(project.budget).toLocaleString()}
               </span>
