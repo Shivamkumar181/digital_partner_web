@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const Footer = () => {
+  // Function to scroll to top
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+  
   return (
     <footer className="bg-black text-white pt-16 pb-10 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,6 +37,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/projects"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Browse Projects
@@ -36,6 +46,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/dashboard"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Dashboard
@@ -44,6 +55,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/messages"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Messages
@@ -52,6 +64,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   About Us
@@ -60,6 +73,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/contact"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Contact
@@ -77,6 +91,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/how-it-works"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   How it Works
@@ -85,6 +100,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/certificates"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Certificates
@@ -93,6 +109,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/payments"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Payments
@@ -101,6 +118,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/profile"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Build Profile
@@ -109,6 +127,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/earnings"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Track Earnings
@@ -126,6 +145,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/post-project"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Post a Project
@@ -134,6 +154,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/hire"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Hire Talent
@@ -142,6 +163,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/how-it-works"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   How it Works
@@ -150,6 +172,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/success-stories"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Success Stories
@@ -158,6 +181,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/pricing"
+                  onClick={scrollToTop}
                   className="text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   Pricing
