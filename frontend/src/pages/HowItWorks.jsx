@@ -3,37 +3,37 @@ import { Link } from "react-router-dom";
 
 const steps = [
   {
-    num: "01",
+    num: "1",
     title: "Create Your Account",
     desc: "Sign up in under 2 minutes. Choose whether you are a freelancer looking for work or a client looking to hire.",
     icon: "👤",
   },
   {
-    num: "02",
+    num: "2",
     title: "Complete Your Profile",
     desc: "Add your skills, portfolio, experience, and a professional photo. A complete profile gets 5x more responses.",
     icon: "📋",
   },
   {
-    num: "03",
+    num: "3",
     title: "Browse or Post Projects",
     desc: "Freelancers browse open projects and send proposals. Clients post their project and receive proposals within hours.",
     icon: "🔍",
   },
   {
-    num: "04",
+    num: "4",
     title: "Connect & Agree",
     desc: "Chat directly, discuss scope, timeline, and budget. Once agreed, the project begins with a clear milestone plan.",
     icon: "🤝",
   },
   {
-    num: "05",
+    num: "5",
     title: "Work & Deliver",
     desc: "Freelancers complete work and submit for review. Clients review deliverables and request revisions if needed.",
     icon: "💼",
   },
   {
-    num: "06",
+    num: "6",
     title: "Get Paid",
     desc: "Once the client approves, payment is released directly to the freelancer's bank account — no delays, no middlemen.",
     icon: "💸",
