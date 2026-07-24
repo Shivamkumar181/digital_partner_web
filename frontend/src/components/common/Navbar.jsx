@@ -357,6 +357,7 @@
 
 // export default Navbar;
 
+
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
@@ -365,14 +366,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { getAvatarUrl } from "../../utils/helpers";
 import axios from "axios";
 
-
+// ─── Notification Bell Component ──────────────────────────────────────────────
 const NotificationBell = ({ token }) => {
   const [notifications, setNotifications] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const bellRef = useRef(null);
   const unreadCount = notifications.filter((n) => !n.read).length;
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (bellRef.current && !bellRef.current.contains(event.target)) {
@@ -383,7 +383,6 @@ const NotificationBell = ({ token }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Fetch notifications on mount and poll every 30 seconds
   useEffect(() => {
     if (!token) return;
     fetchNotifications();
@@ -391,7 +390,6 @@ const NotificationBell = ({ token }) => {
     return () => clearInterval(interval);
   }, [token]);
 
-  // Listen for real-time notifications via socket
   useEffect(() => {
     const socket = window.socket;
     if (!socket) return;
@@ -411,7 +409,7 @@ const NotificationBell = ({ token }) => {
       });
       setNotifications(response.data);
     } catch (error) {
-      // Silently fail - user will see empty state
+      // Silently fail
     }
   };
 
@@ -464,11 +462,11 @@ const NotificationBell = ({ token }) => {
     <div className="relative" ref={bellRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 rounded-full hover:bg-gray-100 transition-colors duration-200"
+        className="relative p-2 rounded-full hover:bg-gray-800 transition-colors duration-200"
         aria-label="Notifications"
       >
         <svg
-          className="w-5 h-5 text-gray-600"
+          className="w-5 h-5 text-gray-300"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -495,17 +493,17 @@ const NotificationBell = ({ token }) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute right-0 mt-2 w-80 sm:w-96 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-80 sm:w-96 bg-gray-900 rounded-2xl shadow-xl border border-gray-700 overflow-hidden z-50"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 bg-gray-50/50">
-              <h3 className="font-semibold text-gray-800 text-sm">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-700 bg-gray-800/50">
+              <h3 className="font-semibold text-gray-200 text-sm">
                 Notifications
               </h3>
               {unreadCount > 0 && (
                 <button
                   onClick={markAllAsRead}
-                  className="text-xs text-indigo-600 hover:text-indigo-800 font-medium transition-colors"
+                  className="text-xs text-indigo-400 hover:text-indigo-300 font-medium transition-colors"
                 >
                   Mark all read
                 </button>
@@ -513,12 +511,12 @@ const NotificationBell = ({ token }) => {
             </div>
 
             {/* Notification List */}
-            <div className="max-h-80 overflow-y-auto divide-y divide-gray-50">
+            <div className="max-h-80 overflow-y-auto divide-y divide-gray-700">
               {notifications.length === 0 ? (
                 <div className="py-10 text-center">
                   <div className="text-3xl mb-2">🔔</div>
                   <p className="text-sm text-gray-400">No notifications yet</p>
-                  <p className="text-xs text-gray-300 mt-1">
+                  <p className="text-xs text-gray-500 mt-1">
                     We'll notify you when something happens
                   </p>
                 </div>
@@ -531,8 +529,8 @@ const NotificationBell = ({ token }) => {
                       markAsRead(notification._id);
                       setIsOpen(false);
                     }}
-                    className={`flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors ${
-                      !notification.read ? "bg-indigo-50/40" : ""
+                    className={`flex items-start gap-3 px-4 py-3 hover:bg-gray-800 transition-colors ${
+                      !notification.read ? "bg-indigo-900/30" : ""
                     }`}
                   >
                     <span className="text-xl flex-shrink-0 mt-0.5">
@@ -541,22 +539,22 @@ const NotificationBell = ({ token }) => {
                     <div className="flex-1 min-w-0">
                       <p
                         className={`text-sm font-semibold truncate ${
-                          !notification.read ? "text-indigo-800" : "text-gray-800"
+                          !notification.read ? "text-indigo-300" : "text-gray-300"
                         }`}
                       >
                         {notification.title}
                       </p>
-                      <p className="text-xs text-gray-500 mt-0.5 line-clamp-2">
+                      <p className="text-xs text-gray-400 mt-0.5 line-clamp-2">
                         {notification.message}
                       </p>
                       {notification.time && (
-                        <p className="text-[10px] text-gray-400 mt-1">
+                        <p className="text-[10px] text-gray-500 mt-1">
                           {new Date(notification.time).toLocaleDateString()}
                         </p>
                       )}
                     </div>
                     {!notification.read && (
-                      <span className="w-2 h-2 bg-indigo-500 rounded-full flex-shrink-0 mt-2" />
+                      <span className="w-2 h-2 bg-indigo-400 rounded-full flex-shrink-0 mt-2" />
                     )}
                   </Link>
                 ))
@@ -569,7 +567,7 @@ const NotificationBell = ({ token }) => {
   );
 };
 
-
+// ─── Main Navbar Component ────────────────────────────────────────────────────
 const Navbar = () => {
   const { user, token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -580,7 +578,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // Close profile dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -600,7 +597,6 @@ const Navbar = () => {
 
   const isActiveRoute = (path) => location.pathname === path;
 
-  // Navigation links based on authentication status
   const getNavLinks = () => {
     if (user) {
       return [
@@ -617,7 +613,7 @@ const Navbar = () => {
   const navLinks = getNavLinks();
 
   return (
-    <nav className="bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
+    <nav className="bg-black border-b border-gray-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 md:h-20">
           {/* Logo */}
@@ -625,7 +621,7 @@ const Navbar = () => {
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300">
               <span className="text-white font-bold text-sm">D</span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent hidden sm:block">
+            <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent hidden sm:block">
               DigitalPartner
             </span>
           </Link>
@@ -638,8 +634,8 @@ const Navbar = () => {
                 to={link.to}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                   isActiveRoute(link.to)
-                    ? "bg-indigo-50 text-indigo-700"
-                    : "text-gray-600 hover:text-indigo-600 hover:bg-gray-50"
+                    ? "bg-indigo-900/30 text-indigo-300"
+                    : "text-gray-300 hover:text-indigo-300 hover:bg-gray-900"
                 }`}
               >
                 {link.label}
@@ -657,21 +653,21 @@ const Navbar = () => {
               <div className="relative" ref={dropdownRef}>
                 <button
                   onClick={() => setIsProfileOpen(!isProfileOpen)}
-                  className="flex items-center space-x-2 p-1.5 rounded-xl hover:bg-gray-50 transition-all duration-200 border border-transparent hover:border-gray-200 group"
+                  className="flex items-center space-x-2 p-1.5 rounded-xl hover:bg-gray-900 transition-all duration-200 border border-transparent hover:border-gray-700 group"
                 >
                   <div className="relative">
                     <img
                       src={getAvatarUrl(user.name, user.avatar)}
                       alt={user.name}
-                      className="w-9 h-9 rounded-full object-cover ring-2 ring-indigo-100 group-hover:ring-indigo-300 transition-all duration-200"
+                      className="w-9 h-9 rounded-full object-cover ring-2 ring-indigo-500/30 group-hover:ring-indigo-400/50 transition-all duration-200"
                       onError={(e) => {
                         e.target.src = getAvatarUrl(user.name, null);
                       }}
                     />
-                    <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
+                    <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-black" />
                   </div>
                   <div className="text-left hidden lg:block">
-                    <p className="text-sm font-semibold text-gray-800 leading-none">
+                    <p className="text-sm font-semibold text-gray-200 leading-none">
                       {user.name}
                     </p>
                     <p className="text-xs text-gray-400 capitalize leading-none mt-0.5">
@@ -702,24 +698,24 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -8, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 overflow-hidden"
+                      className="absolute right-0 mt-2 w-64 bg-gray-900 rounded-2xl shadow-xl border border-gray-700 py-2 overflow-hidden"
                     >
                       {/* Profile Header */}
-                      <div className="px-4 py-3 border-b border-gray-50">
+                      <div className="px-4 py-3 border-b border-gray-700">
                         <div className="flex items-center space-x-3">
                           <img
                             src={getAvatarUrl(user.name, user.avatar)}
                             alt={user.name}
-                            className="w-11 h-11 rounded-full object-cover ring-2 ring-indigo-100"
+                            className="w-11 h-11 rounded-full object-cover ring-2 ring-indigo-500/30"
                             onError={(e) => {
                               e.target.src = getAvatarUrl(user.name, null);
                             }}
                           />
                           <div>
-                            <p className="font-semibold text-gray-900 text-sm">
+                            <p className="font-semibold text-gray-200 text-sm">
                               {user.name}
                             </p>
-                            <p className="text-xs text-gray-500 truncate max-w-[140px]">
+                            <p className="text-xs text-gray-400 truncate max-w-[140px]">
                               {user.email}
                             </p>
                           </div>
@@ -729,7 +725,7 @@ const Navbar = () => {
                       {/* Dropdown Items */}
                       <Link
                         to={`/profile/${user._id}`}
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-800 transition-colors"
                         onClick={() => setIsProfileOpen(false)}
                       >
                         <span className="text-base">👤</span>
@@ -738,17 +734,17 @@ const Navbar = () => {
 
                       <Link
                         to="/settings"
-                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                        className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-300 hover:bg-gray-800 transition-colors"
                         onClick={() => setIsProfileOpen(false)}
                       >
                         <span className="text-base">⚙️</span>
                         <span>Settings</span>
                       </Link>
 
-                      <div className="border-t border-gray-50 mt-1 pt-1">
+                      <div className="border-t border-gray-700 mt-1 pt-1">
                         <button
                           onClick={handleLogout}
-                          className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 transition-colors"
+                          className="flex items-center gap-3 w-full px-4 py-2.5 text-sm text-red-400 hover:bg-red-900/20 transition-colors"
                         >
                           <span className="text-base">🚪</span>
                           <span>Logout</span>
@@ -763,13 +759,13 @@ const Navbar = () => {
               <div className="flex items-center space-x-2">
                 <Link
                   to="/login"
-                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-indigo-600 transition-colors"
+                  className="px-4 py-2 text-sm font-medium text-gray-300 hover:text-indigo-300 transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   to="/register"
-                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-indigo-200/50 transition-all duration-200"
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-200"
                 >
                   Sign Up
                 </Link>
@@ -782,7 +778,7 @@ const Navbar = () => {
             {user && token && <NotificationBell token={token} />}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg text-gray-600 hover:bg-gray-50 transition-colors"
+              className="p-2 rounded-lg text-gray-300 hover:bg-gray-900 transition-colors"
               aria-label="Toggle menu"
             >
               <svg
@@ -820,28 +816,28 @@ const Navbar = () => {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden border-t border-gray-100 bg-white overflow-hidden"
+            className="md:hidden border-t border-gray-800 bg-black overflow-hidden"
           >
             <div className="px-4 py-4 space-y-1">
               {/* User Info in Mobile Menu */}
               {user && (
-                <div className="flex items-center space-x-3 p-3 bg-gradient-to-r from-gray-50 to-indigo-50/30 rounded-xl mb-3">
+                <div className="flex items-center space-x-3 p-3 bg-gradient-to-r from-gray-900 to-indigo-900/20 rounded-xl mb-3">
                   <img
                     src={getAvatarUrl(user.name, user.avatar)}
                     alt={user.name}
-                    className="w-12 h-12 rounded-full object-cover ring-2 ring-indigo-100"
+                    className="w-12 h-12 rounded-full object-cover ring-2 ring-indigo-500/30"
                     onError={(e) => {
                       e.target.src = getAvatarUrl(user.name, null);
                     }}
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-900 text-sm">
+                    <p className="font-semibold text-gray-200 text-sm">
                       {user.name}
                     </p>
-                    <p className="text-xs text-gray-500 capitalize">
+                    <p className="text-xs text-gray-400 capitalize">
                       {user.role}
                     </p>
-                    <p className="text-xs text-gray-400 truncate">{user.email}</p>
+                    <p className="text-xs text-gray-500 truncate">{user.email}</p>
                   </div>
                 </div>
               )}
@@ -854,8 +850,8 @@ const Navbar = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                     isActiveRoute(link.to)
-                      ? "bg-indigo-50 text-indigo-700"
-                      : "text-gray-700 hover:bg-gray-50"
+                      ? "bg-indigo-900/30 text-indigo-300"
+                      : "text-gray-300 hover:bg-gray-900"
                   }`}
                 >
                   {link.label}
@@ -867,20 +863,20 @@ const Navbar = () => {
                   <Link
                     to={`/profile/${user._id}`}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-3 py-2.5 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="block px-3 py-2.5 rounded-lg text-sm text-gray-300 hover:bg-gray-900 transition-colors"
                   >
                     👤 Profile
                   </Link>
                   <Link
                     to="/settings"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block px-3 py-2.5 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="block px-3 py-2.5 rounded-lg text-sm text-gray-300 hover:bg-gray-900 transition-colors"
                   >
                     ⚙️ Settings
                   </Link>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-3 py-2.5 rounded-lg text-sm text-red-500 hover:bg-red-50 transition-colors"
+                    className="block w-full text-left px-3 py-2.5 rounded-lg text-sm text-red-400 hover:bg-red-900/20 transition-colors"
                   >
                     🚪 Logout
                   </button>
@@ -890,17 +886,17 @@ const Navbar = () => {
                   <Link
                     to="/login"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block w-full text-center px-4 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                    className="block w-full text-center px-4 py-2.5 rounded-xl border border-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-900 transition-colors"
                   >
                     Login
                   </Link>
                   <Link
                     to="/register"
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block w-full text-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-sm font-medium hover:shadow-lg transition-all duration-200"
+                    className="block w-full text-center px-4 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm font-medium hover:shadow-lg transition-all duration-200"
                   >
                     Sign Up
-        </Link>
+                  </Link>
                 </div>
               )}
             </div>
@@ -912,3 +908,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
