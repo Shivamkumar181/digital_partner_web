@@ -246,6 +246,7 @@ const Footer = () => {
               freelancers and clients worldwide. Collaborate, contribute, and
               earn fairly.
             </p>
+          </div>
 
           {/* QUICK LINKS */}
           <div>
@@ -416,7 +417,7 @@ const Footer = () => {
             </h4>
             <p className="text-gray-400 text-sm mb-3">
               Subscribe for updates, tips & new opportunities.
-            </p>      
+            </p>
 
             {/* TRUST BADGES */}
             <div className="mt-5 text-sm text-gray-400 space-y-2">
@@ -458,5 +459,7 @@ const Footer = () => {
     </footer>
   );
 };
+
+export default Footer;
 
 export default Footer;
