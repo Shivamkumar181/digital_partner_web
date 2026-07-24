@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import AIChatBot from '../components/AIChatBot';
 
 const Home = () => {
   const [ref, inView] = useInView({
@@ -134,6 +135,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <AIChatBot />
     </div>
   );
 };
