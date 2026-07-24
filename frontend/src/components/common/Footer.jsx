@@ -246,38 +246,6 @@ const Footer = () => {
               freelancers and clients worldwide. Collaborate, contribute, and
               earn fairly.
             </p>
-
-            {/* SOCIAL ICONS - Font Awesome */}
-            <div className="flex gap-3 mt-5">
-              <a
-                href="#"
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 hover:bg-indigo-600 transition-colors duration-300 text-gray-400 hover:text-white"
-                aria-label="Website"
-              >
-                <i className="fas fa-globe"></i>
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 hover:bg-indigo-600 transition-colors duration-300 text-gray-400 hover:text-white"
-                aria-label="Twitter"
-              >
-                <i className="fab fa-twitter"></i>
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 hover:bg-indigo-600 transition-colors duration-300 text-gray-400 hover:text-white"
-                aria-label="LinkedIn"
-              >
-                <i className="fab fa-linkedin-in"></i>
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 flex items-center justify-center rounded-lg bg-white/5 hover:bg-indigo-600 transition-colors duration-300 text-gray-400 hover:text-white"
-                aria-label="Instagram"
-              >
-                <i className="fab fa-instagram"></i>
-              </a>
-            </div>
           </div>
 
           {/* QUICK LINKS */}
@@ -449,17 +417,7 @@ const Footer = () => {
             </h4>
             <p className="text-gray-400 text-sm mb-3">
               Subscribe for updates, tips & new opportunities.
-            </p>
-
-            <div className="flex">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="w-full px-3 py-2 rounded-l-lg bg-white/5 border border-gray-700 text-sm focus:outline-none focus:border-indigo-500 transition-colors text-white placeholder-gray-500"
-              />
-              <button className="px-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-r-lg text-sm font-medium hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300">
-                Join
-              </button>
+            </p>      
             </div>
 
             {/* TRUST BADGES */}
